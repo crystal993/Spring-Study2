@@ -17,18 +17,25 @@ public class AppConfig {
 
     // 생성자를 통해 의존관계를 주입해준다.
     // 생성자 주입
+
+    //@Bean memberService -> new MemoryMemberRepository()
+    //@Bean OrderService -> new MemoryMemberRepository()
+
     @Bean
     public MemberService memberService(){
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
